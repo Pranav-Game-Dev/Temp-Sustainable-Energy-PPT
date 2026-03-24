@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -6,7 +6,7 @@
 }
 
 body {
-  @apply bg-[#050505] text-[#f8fafc] overflow-hidden m-0 p-0;
+  @apply bg-[#050505] text-[#f8fafc] overflow-hidden m-0 p-0 antialiased;
   font-family: var(--font-sans);
 }
 
@@ -30,6 +30,8 @@ body {
   position: relative;
   overflow: hidden;
   background: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -49,11 +51,11 @@ body {
 /* Background Animation */
 .bg-glow {
   position: absolute;
-  width: 60vw;
-  height: 60vw;
+  width: 70vw;
+  height: 70vw;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
+  filter: blur(150px);
+  opacity: 0.12;
   z-index: 0;
   pointer-events: none;
 }
@@ -75,9 +77,23 @@ body {
 
 /* Glass Depth */
 .glass-panel {
-  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl;
+  @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)];
 }
 
 .glass-card {
-  @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 transition-all duration-300 hover:bg-white/10;
+  @apply bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-500 hover:bg-white/[0.08] hover:border-white/20 hover:shadow-2xl hover:-translate-y-1;
+}
+
+/* Custom Scrollbar (if needed) */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }

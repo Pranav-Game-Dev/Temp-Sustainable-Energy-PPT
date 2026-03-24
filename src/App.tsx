@@ -5,11 +5,12 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Maximize2, Zap, Globe, AlertTriangle, Lightbulb, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
+import { Toaster, toast } from 'sonner';
+import { Maximize2, Zap, Globe, AlertTriangle, Lightbulb, TrendingUp, CheckCircle, ArrowRight, User, BookOpen, Hash, Fingerprint, Heart, Sparkles, ShieldCheck, Cpu } from 'lucide-react';
 
 interface SlideData {
   id: number;
-  type: 'intro' | 'timeline' | 'grid' | 'split' | 'future' | 'conclusion';
+  type: 'intro' | 'timeline' | 'grid' | 'split' | 'future' | 'conclusion' | 'thankyou';
   title: string;
   subtitle?: string;
   content: any;
@@ -20,16 +21,22 @@ const SLIDES: SlideData[] = [
   {
     id: 0,
     type: 'intro',
-    title: "The Future of Sustainable Energy",
-    subtitle: "Pioneering the Green Revolution",
-    image: "slide1_intro.png",
+    title: "Future of Sustainable Energy",
+    subtitle: "Building a Reliable, Low-Carbon World",
+    image: "https://picsum.photos/seed/energy-intro/1920/1080",
     content: {
-      tagline: "Transitioning to a resilient, carbon-neutral global economy.",
+      tagline: "Transitioning from fossil dependency to resilient and sustainable energy systems",
       points: [
-        "Renewable systems for long-term demand",
-        "Environmental protection & climate stability",
-        "Energy security through diversification"
-      ]
+        "Clean energy ensures long-term environmental and economic stability",
+        "Reduces dependence on limited and volatile fossil fuel resources",
+        "Supports global energy security in an uncertain geopolitical landscape"
+      ],
+      personal: {
+        name: "Pranav Dabhi",
+        course: "B-Tech CSE",
+        roll: "1036",
+        enroll: "2401442032"
+      }
     }
   },
   {
@@ -37,12 +44,12 @@ const SLIDES: SlideData[] = [
     type: 'timeline',
     title: "Evolution of Energy Systems",
     subtitle: "A Century of Transformation",
-    image: "slide2_evolution.png",
+    image: "https://picsum.photos/seed/energy-timeline/1920/1080",
     content: [
-      { year: "1900s", label: "Fossil Fuel Dominance", desc: "Coal & Oil drive industrial growth" },
-      { year: "1970s", label: "Nuclear & Hydro", desc: "First major shift toward diversification" },
-      { year: "2000s", label: "Renewable Surge", desc: "Solar & Wind become cost-competitive" },
-      { year: "2025+", label: "The Green Era", desc: "Decentralized, smart, and zero-emission" }
+      { year: "1900s", label: "Fossil Fuel Era", desc: "Coal and oil powered industrial growth and global expansion" },
+      { year: "1970s", label: "Energy Diversification", desc: "Oil crises triggered interest in nuclear and alternative energy" },
+      { year: "2000s", label: "Renewable Acceleration", desc: "Solar and wind technologies became viable and scalable" },
+      { year: "2025+", label: "Intelligent Energy Systems", desc: "Smart grids, storage, and clean technologies reshape global energy" }
     ]
   },
   {
@@ -50,12 +57,12 @@ const SLIDES: SlideData[] = [
     type: 'grid',
     title: "Critical Challenges",
     subtitle: "Navigating the Transition",
-    image: "slide3_challenges.png",
+    image: "https://picsum.photos/seed/energy-challenges/1920/1080",
     content: [
-      { icon: <Globe className="w-6 h-6" />, title: "Supply Chains", desc: "Geopolitical tensions affecting resource flow" },
-      { icon: <Zap className="w-6 h-6" />, title: "Intermittency", desc: "Storage limitations of wind and solar" },
-      { icon: <AlertTriangle className="w-6 h-6" />, title: "Equity Gap", desc: "Unequal access between global regions" },
-      { icon: <TrendingUp className="w-6 h-6" />, title: "Emissions", desc: "Urgent need for industrial decarbonization" }
+      { icon: <Globe className="w-6 h-6" />, title: "Supply Disruptions", desc: "Geopolitical conflicts and trade dependencies destabilize energy supply" },
+      { icon: <Zap className="w-6 h-6" />, title: "Intermittent Generation", desc: "Solar and wind require efficient storage to ensure reliability" },
+      { icon: <AlertTriangle className="w-6 h-6" />, title: "Energy Inequality", desc: "Developing regions face limited access to affordable clean energy" },
+      { icon: <TrendingUp className="w-6 h-6" />, title: "High Emissions", desc: "Industrial sectors remain major contributors to global carbon output" }
     ]
   },
   {
@@ -63,13 +70,13 @@ const SLIDES: SlideData[] = [
     type: 'split',
     title: "Green Innovations",
     subtitle: "Technological Breakthroughs",
-    image: "slide4_innovations.png",
+    image: "https://picsum.photos/seed/energy-innovations/1920/1080",
     content: [
-      "High-efficiency advanced solar cells",
-      "Massive-scale offshore wind arrays",
-      "Green hydrogen as clean industrial fuel",
-      "AI-driven smart grid optimization",
-      "Direct air carbon capture systems"
+      "Next-generation solar technologies improving efficiency and cost",
+      "Large-scale offshore wind expanding renewable capacity",
+      "Green hydrogen enabling clean fuel for heavy industries",
+      "AI-powered smart grids optimizing energy distribution",
+      "Carbon capture technologies reducing atmospheric emissions"
     ]
   },
   {
@@ -77,11 +84,11 @@ const SLIDES: SlideData[] = [
     type: 'future',
     title: "Future Trends",
     subtitle: "Defining the Next Decade",
-    image: "slide5_future.png",
+    image: "https://picsum.photos/seed/energy-future/1920/1080",
     content: [
-      { title: "Decentralization", desc: "Rooftop solar and local microgrids" },
-      { title: "Electrification", desc: "Phasing out fossil fuels in transport" },
-      { title: "Smart Infrastructure", desc: "V2G (Vehicle-to-Grid) integration" }
+      { title: "Decentralized Energy", desc: "Local generation through rooftop solar and microgrids" },
+      { title: "Electrification", desc: "Shift toward electric transport and industrial systems" },
+      { title: "Intelligent Infrastructure", desc: "Integration of AI, storage, and vehicle-to-grid ecosystems" }
     ]
   },
   {
@@ -89,12 +96,21 @@ const SLIDES: SlideData[] = [
     type: 'conclusion',
     title: "The Path Forward",
     subtitle: "Clean. Efficient. Accessible.",
-    image: "slide6_conclusion.png",
-    content: "The global energy transition is no longer a choice—it is a necessity. Through innovation, policy, and collaboration, we can build a sustainable legacy for generations to come."
+    image: "https://picsum.photos/seed/energy-conclusion/1920/1080",
+    content: "The transition to sustainable energy is essential for long-term global stability. Advancements in technology, combined with policy and international cooperation, will define the future of energy. A clean, efficient, and accessible energy system is both achievable and necessary."
+  },
+  {
+    id: 6,
+    type: 'thankyou',
+    title: "Thank You",
+    subtitle: "For Your Time and Attention",
+    image: "https://picsum.photos/seed/energy-thanks/1920/1080",
+    content: "Let's build a greener future together."
   }
 ];
 
 export default function App() {
+  const [isStarted, setIsStarted] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -102,6 +118,8 @@ export default function App() {
     if (currentSlide < SLIDES.length - 1) {
       setDirection(1);
       setCurrentSlide(prev => prev + 1);
+    } else {
+      toast.success("End of presentation reached.");
     }
   }, [currentSlide]);
 
@@ -109,11 +127,14 @@ export default function App() {
     if (currentSlide > 0) {
       setDirection(-1);
       setCurrentSlide(prev => prev - 1);
+    } else {
+      toast.info("This is the first slide.");
     }
   }, [currentSlide]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isStarted) return;
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown' || e.key === 'Enter') {
         nextSlide();
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'Backspace') {
@@ -123,7 +144,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextSlide, prevSlide]);
+  }, [nextSlide, prevSlide, isStarted]);
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -133,14 +154,87 @@ export default function App() {
     }
   };
 
+  const startPresentation = () => {
+    setIsStarted(true);
+    toast.success("Presentation Started", {
+      description: "Use arrow keys or space to navigate."
+    });
+  };
+
   const slide = SLIDES[currentSlide];
+
+  if (!isStarted) {
+    return (
+      <div className="presentation-container">
+        <Toaster position="top-center" theme="dark" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="bg-glow animate-float bg-emerald-500/20 top-[-10%] left-[-10%]" />
+          <div className="bg-glow animate-float-delayed bg-blue-500/20 bottom-[-10%] right-[-10%]" />
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        </div>
+        <div className="slide-wrapper flex items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="glass-panel p-16 text-center space-y-12 max-w-4xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50" />
+            
+            <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <h1 className="text-8xl font-black tracking-tighter leading-none">
+                  Sustainable <span className="text-emerald-500">Energy</span>
+                </h1>
+              </motion.div>
+              <p className="text-2xl text-white/40 font-light tracking-[0.3em] uppercase">Future & Green Innovations</p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button 
+                onClick={toggleFullscreen}
+                className="group flex items-center justify-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all text-sm uppercase tracking-widest"
+              >
+                <Maximize2 className="w-5 h-5 group-hover:scale-110 transition-transform" /> Enable Fullscreen
+              </button>
+              <button 
+                onClick={startPresentation}
+                className="group flex items-center justify-center gap-3 px-12 py-4 bg-emerald-600 hover:bg-emerald-500 text-black font-bold rounded-full transition-all text-sm uppercase tracking-widest shadow-[0_0_30px_rgba(16,185,129,0.4)]"
+              >
+                Start Presentation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            <div className="pt-8 border-t border-white/10 flex justify-center gap-12 text-white/40 text-[10px] font-mono uppercase tracking-[0.2em]">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-3 h-3 text-emerald-500" /> 7 Immersive Slides
+              </div>
+              <span>•</span>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-3 h-3 text-blue-500" /> Professional Deck
+              </div>
+              <span>•</span>
+              <div className="flex items-center gap-2">
+                <Cpu className="w-3 h-3 text-amber-500" /> Interactive UI
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="presentation-container">
+      <Toaster position="top-center" theme="dark" />
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="bg-glow animate-float bg-emerald-500/20 top-[-10%] left-[-10%]" />
         <div className="bg-glow animate-float-delayed bg-blue-500/20 bottom-[-10%] right-[-10%]" />
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '60px 60px' }} />
       </div>
 
       <div className="slide-wrapper">
@@ -148,70 +242,116 @@ export default function App() {
           <motion.div
             key={currentSlide}
             custom={direction}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: direction * 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -direction * 50 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="w-full h-full flex flex-col"
           >
-            {renderSlideContent(slide, currentSlide === 0, toggleFullscreen)}
+            {renderSlideContent(slide)}
           </motion.div>
         </AnimatePresence>
 
         {/* Minimal Progress Indicator */}
-        <div className="absolute bottom-8 right-8 flex gap-2">
-          {SLIDES.map((_, i) => (
-            <div 
-              key={i} 
-              className={`h-1 transition-all duration-500 rounded-full ${i === currentSlide ? 'w-8 bg-emerald-500' : 'w-2 bg-white/20'}`} 
-            />
-          ))}
+        <div className="absolute bottom-8 right-8 flex items-center gap-4 px-6 py-3 glass-panel !rounded-full">
+          <span className="text-[10px] font-mono text-white/40 tracking-widest uppercase">Slide {currentSlide + 1} / {SLIDES.length}</span>
+          <div className="flex gap-1.5">
+            {SLIDES.map((_, i) => (
+              <div 
+                key={i} 
+                className={`h-1.5 transition-all duration-500 rounded-full ${i === currentSlide ? 'w-6 bg-emerald-500' : 'w-1.5 bg-white/10'}`} 
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-function renderSlideContent(slide: SlideData, isFirst: boolean, onFullscreen: () => void) {
+function renderSlideContent(slide: SlideData) {
   switch (slide.type) {
     case 'intro':
       return (
-        <div className="w-full h-full flex flex-col md:flex-row items-center p-16 gap-16">
-          <div className="flex-1 space-y-8">
+        <div className="w-full h-full flex flex-col md:flex-row items-center p-16 gap-16 relative">
+          <div className="flex-1 space-y-10 z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-4"
             >
-              <h2 className="text-emerald-400 font-mono tracking-[0.4em] uppercase text-sm">Sustainable Energy</h2>
-              <h1 className="text-7xl font-bold leading-tight tracking-tight">{slide.title}</h1>
-              <p className="text-2xl text-white/60 font-light italic">{slide.subtitle}</p>
+              <div className="flex items-center gap-3">
+                <div className="h-px w-12 bg-emerald-500" />
+                <h2 className="text-emerald-400 font-mono tracking-[0.4em] uppercase text-xs">Sustainable Energy</h2>
+              </div>
+              <h1 className="text-8xl font-black leading-[0.9] tracking-tighter">{slide.title}</h1>
+              <p className="text-3xl text-white/40 font-light italic">{slide.subtitle}</p>
             </motion.div>
             
-            <div className="glass-panel p-8 space-y-6">
-              <p className="text-xl text-emerald-100/90 font-medium">{slide.content.tagline}</p>
-              <div className="grid grid-cols-1 gap-4">
+            <div className="glass-panel p-10 space-y-8 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
+              <p className="text-2xl text-emerald-50/90 font-medium leading-relaxed">{slide.content.tagline}</p>
+              <div className="grid grid-cols-1 gap-5">
                 {slide.content.points.map((p: string, i: number) => (
-                  <div key={i} className="flex items-center gap-3 text-white/60">
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span>{p}</span>
-                  </div>
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + i * 0.1 }}
+                    className="flex items-start gap-4 text-white/60"
+                  >
+                    <CheckCircle className="w-6 h-6 text-emerald-500 shrink-0 mt-1" />
+                    <span className="text-lg leading-snug">{p}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
-            {isFirst && (
-              <button 
-                onClick={onFullscreen}
-                className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all text-sm uppercase tracking-widest"
-              >
-                <Maximize2 className="w-4 h-4" /> Start Presentation
-              </button>
-            )}
+            {/* Personal Details - More Integrated */}
+            <div className="flex flex-wrap gap-4">
+              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-emerald-500/20">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                  <User className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Presenter</p>
+                  <p className="text-base font-bold text-white/90">{slide.content.personal.name}</p>
+                </div>
+              </div>
+              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-blue-500/20">
+                <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+                  <BookOpen className="w-5 h-5 text-blue-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Course</p>
+                  <p className="text-base font-bold text-white/90">{slide.content.personal.course}</p>
+                </div>
+              </div>
+              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-amber-500/20">
+                <div className="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center">
+                  <Hash className="w-5 h-5 text-amber-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Roll No</p>
+                  <p className="text-base font-bold text-white/90">{slide.content.personal.roll}</p>
+                </div>
+              </div>
+              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-indigo-500/20">
+                <div className="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center">
+                  <Fingerprint className="w-5 h-5 text-indigo-400" />
+                </div>
+                <div>
+                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Enrollment</p>
+                  <p className="text-base font-bold text-white/90">{slide.content.personal.enroll}</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex-1 h-full py-12">
-            <div className="w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+          <div className="flex-1 h-full py-12 relative">
+            <div className="absolute -inset-4 bg-emerald-500/20 blur-3xl rounded-full opacity-30 animate-pulse" />
+            <div className="w-full h-full rounded-[40px] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 relative">
               <img src={slide.image} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             </div>
           </div>
         </div>
@@ -272,13 +412,13 @@ function renderSlideContent(slide: SlideData, isFirst: boolean, onFullscreen: ()
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card flex flex-col gap-4 p-10"
+                className="glass-card flex flex-col gap-4 p-12 !min-h-[220px]"
               >
                 <div className="p-3 bg-emerald-500/10 rounded-xl w-fit text-emerald-400">
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-bold">{item.title}</h3>
-                <p className="text-white/50 leading-relaxed">{item.desc}</p>
+                <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -292,24 +432,24 @@ function renderSlideContent(slide: SlideData, isFirst: boolean, onFullscreen: ()
             <img src={slide.image} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
           </div>
-          <div className="w-1/2 h-full flex flex-col justify-center p-20 space-y-12">
+          <div className="w-1/2 h-full flex flex-col justify-center p-20 space-y-10">
             <div>
               <h1 className="text-6xl font-bold mb-4">{slide.title}</h1>
               <p className="text-2xl text-emerald-400/80 italic">{slide.subtitle}</p>
             </div>
-            <div className="space-y-6">
+            <div className="grid grid-cols-1 gap-4">
               {slide.content.map((item: string, i: number) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-6 group"
+                  className="flex items-center gap-6 group glass-card !p-4"
                 >
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-black transition-all">
-                    <ArrowRight className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-black transition-all shrink-0">
+                    <ArrowRight className="w-4 h-4" />
                   </div>
-                  <span className="text-xl font-medium text-white/80">{item}</span>
+                  <span className="text-lg font-medium text-white/80">{item}</span>
                 </motion.div>
               ))}
             </div>
@@ -334,7 +474,7 @@ function renderSlideContent(slide: SlideData, isFirst: boolean, onFullscreen: ()
                   transition={{ delay: i * 0.1 }}
                   className="glass-card flex items-center gap-8 px-10"
                 >
-                  <span className="text-4xl font-bold text-emerald-500/20">0{i + 1}</span>
+                  <span className="text-5xl font-black text-emerald-500/40">0{i + 1}</span>
                   <div>
                     <h3 className="text-2xl font-bold mb-1">{item.title}</h3>
                     <p className="text-white/50">{item.desc}</p>
@@ -372,6 +512,88 @@ function renderSlideContent(slide: SlideData, isFirst: boolean, onFullscreen: ()
                 "{slide.content}"
               </p>
             </motion.div>
+          </div>
+        </div>
+      );
+
+    case 'thankyou':
+      return (
+        <div className="w-full h-full relative flex items-center justify-center p-20 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="bg-glow animate-float bg-emerald-500/30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '30px 30px' }} />
+          </div>
+          
+          <div className="relative z-10 text-center space-y-16">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="space-y-6"
+            >
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Heart className="w-24 h-24 text-emerald-500 mx-auto mb-4 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
+              </motion.div>
+              <h1 className="text-[12rem] font-black tracking-tighter leading-none bg-gradient-to-b from-white via-white to-white/10 bg-clip-text text-transparent">
+                {slide.title}
+              </h1>
+              <p className="text-4xl text-emerald-400 font-light tracking-[0.6em] uppercase">
+                {slide.subtitle}
+              </p>
+            </motion.div>
+            
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="glass-panel px-16 py-8 inline-block relative"
+              >
+                <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-emerald-500" />
+                <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-emerald-500" />
+                <p className="text-2xl text-white/80 font-mono tracking-widest uppercase">
+                  {slide.content}
+                </p>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="flex justify-center gap-12"
+              >
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-xl">
+                    <User className="w-8 h-8 text-emerald-400" />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1">Presenter</p>
+                    <p className="text-sm font-bold text-white/90">Pranav Dabhi</p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-xl">
+                    <Hash className="w-8 h-8 text-blue-400" />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1">Roll Number</p>
+                    <p className="text-sm font-bold text-white/90">1036</p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shadow-xl">
+                    <Fingerprint className="w-8 h-8 text-amber-400" />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1">Enrollment</p>
+                    <p className="text-sm font-bold text-white/90">2401442032</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       );
