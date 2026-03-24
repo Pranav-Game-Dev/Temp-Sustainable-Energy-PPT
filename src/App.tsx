@@ -27,9 +27,9 @@ const SLIDES: SlideData[] = [
     content: {
       tagline: "Transitioning from fossil dependency to resilient and sustainable energy systems",
       points: [
-        "Clean energy ensures long-term environmental and economic stability",
-        "Reduces dependence on limited and volatile fossil fuel resources",
-        "Supports global energy security in an uncertain geopolitical landscape"
+        "Clean energy helps in improving environmental sustainability and long-term economic stability",
+        "It contributes to reducing dependence on finite and volatile fossil fuel resources",
+        "It plays an important role in supporting global energy security within complex geopolitical landscapes"
       ],
       personal: {
         name: "Pranav Dabhi",
@@ -46,10 +46,10 @@ const SLIDES: SlideData[] = [
     subtitle: "A Century of Transformation",
     image: "https://picsum.photos/seed/energy-timeline/1920/1080",
     content: [
-      { year: "1900s", label: "Fossil Fuel Era", desc: "Coal and oil powered industrial growth and global expansion" },
-      { year: "1970s", label: "Energy Diversification", desc: "Oil crises triggered interest in nuclear and alternative energy" },
-      { year: "2000s", label: "Renewable Acceleration", desc: "Solar and wind technologies became viable and scalable" },
-      { year: "2025+", label: "Intelligent Energy Systems", desc: "Smart grids, storage, and clean technologies reshape global energy" }
+      { year: "1900s", label: "Fossil Fuel Era", desc: "Coal and oil were primary drivers for industrial growth and global infrastructure expansion" },
+      { year: "1970s", label: "Energy Diversification", desc: "Global oil crises prompted research into nuclear power and alternative energy sources" },
+      { year: "2000s", label: "Renewable Acceleration", desc: "Technological advancements allowed solar and wind energy to become economically viable and scalable" },
+      { year: "2025+", label: "Intelligent Energy Systems", desc: "Integration of smart grids and advanced storage systems helps to modernize global energy distribution" }
     ]
   },
   {
@@ -59,10 +59,10 @@ const SLIDES: SlideData[] = [
     subtitle: "Navigating the Transition",
     image: "https://picsum.photos/seed/energy-challenges/1920/1080",
     content: [
-      { icon: <Globe className="w-6 h-6" />, title: "Supply Disruptions", desc: "Geopolitical conflicts and trade dependencies destabilize energy supply" },
-      { icon: <Zap className="w-6 h-6" />, title: "Intermittent Generation", desc: "Solar and wind require efficient storage to ensure reliability" },
-      { icon: <AlertTriangle className="w-6 h-6" />, title: "Energy Inequality", desc: "Developing regions face limited access to affordable clean energy" },
-      { icon: <TrendingUp className="w-6 h-6" />, title: "High Emissions", desc: "Industrial sectors remain major contributors to global carbon output" }
+      { icon: <Globe className="w-6 h-6" />, title: "Supply Disruptions", desc: "Geopolitical factors and trade dependencies can lead to instability in global energy supplies" },
+      { icon: <Zap className="w-6 h-6" />, title: "Intermittent Generation", desc: "The variable nature of solar and wind energy highlights the importance of efficient storage for reliability" },
+      { icon: <AlertTriangle className="w-6 h-6" />, title: "Energy Inequality", desc: "Many developing regions continue to face challenges in accessing affordable and clean energy sources" },
+      { icon: <TrendingUp className="w-6 h-6" />, title: "High Emissions", desc: "Large-scale industrial sectors contribute significantly to global carbon emissions, requiring targeted solutions" }
     ]
   },
   {
@@ -72,11 +72,11 @@ const SLIDES: SlideData[] = [
     subtitle: "Technological Breakthroughs",
     image: "https://picsum.photos/seed/energy-innovations/1920/1080",
     content: [
-      "Next-generation solar technologies improving efficiency and cost",
-      "Large-scale offshore wind expanding renewable capacity",
-      "Green hydrogen enabling clean fuel for heavy industries",
-      "AI-powered smart grids optimizing energy distribution",
-      "Carbon capture technologies reducing atmospheric emissions"
+      "Next-generation solar cells are being developed to improve energy conversion efficiency and reduce costs",
+      "Large-scale offshore wind farms contribute to expanding the overall capacity of renewable energy",
+      "Green hydrogen can be used as a clean fuel alternative for heavy industrial processes",
+      "AI-powered smart grids help to optimize the distribution and management of energy",
+      "Carbon capture and storage technologies can contribute to reducing atmospheric carbon emissions"
     ]
   },
   {
@@ -86,9 +86,9 @@ const SLIDES: SlideData[] = [
     subtitle: "Defining the Next Decade",
     image: "https://picsum.photos/seed/energy-future/1920/1080",
     content: [
-      { title: "Decentralized Energy", desc: "Local generation through rooftop solar and microgrids" },
-      { title: "Electrification", desc: "Shift toward electric transport and industrial systems" },
-      { title: "Intelligent Infrastructure", desc: "Integration of AI, storage, and vehicle-to-grid ecosystems" }
+      { title: "Decentralized Energy", desc: "Decentralized systems allow for local energy generation through rooftop solar and microgrids" },
+      { title: "Electrification", desc: "The shift toward electrification supports the transition of transport and industrial systems" },
+      { title: "Intelligent Infrastructure", desc: "Integrating AI with storage and vehicle-to-grid ecosystems can help in managing energy demand" }
     ]
   },
   {
@@ -97,7 +97,7 @@ const SLIDES: SlideData[] = [
     title: "The Path Forward",
     subtitle: "Clean. Efficient. Accessible.",
     image: "https://picsum.photos/seed/energy-conclusion/1920/1080",
-    content: "The transition to sustainable energy is essential for long-term global stability. Advancements in technology, combined with policy and international cooperation, will define the future of energy. A clean, efficient, and accessible energy system is both achievable and necessary."
+    content: "This highlights the importance of transitioning to sustainable energy for long-term global stability. Technological advancements, combined with effective policy and international cooperation, show how clean energy can contribute to a more resilient future. A clean, efficient, and accessible energy system remains a primary objective for global development."
   },
   {
     id: 6,
@@ -156,9 +156,6 @@ export default function App() {
 
   const startPresentation = () => {
     setIsStarted(true);
-    toast.success("Presentation Started", {
-      description: "Use arrow keys or space to navigate."
-    });
   };
 
   const slide = SLIDES[currentSlide];
@@ -186,11 +183,11 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <h1 className="text-8xl font-black tracking-tighter leading-none">
+                <h1 className="text-7xl font-black tracking-tighter leading-none">
                   Sustainable <span className="text-emerald-500">Energy</span>
                 </h1>
               </motion.div>
-              <p className="text-2xl text-white/40 font-light tracking-[0.3em] uppercase">Future & Green Innovations</p>
+              <p className="text-xl text-white/40 font-light tracking-[0.3em] uppercase">Future & Green Innovations</p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -273,76 +270,78 @@ function renderSlideContent(slide: SlideData) {
   switch (slide.type) {
     case 'intro':
       return (
-        <div className="w-full h-full flex flex-col md:flex-row items-center p-16 gap-16 relative">
-          <div className="flex-1 space-y-10 z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="space-y-4"
-            >
-              <div className="flex items-center gap-3">
-                <div className="h-px w-12 bg-emerald-500" />
-                <h2 className="text-emerald-400 font-mono tracking-[0.4em] uppercase text-xs">Sustainable Energy</h2>
-              </div>
-              <h1 className="text-8xl font-black leading-[0.9] tracking-tighter">{slide.title}</h1>
-              <p className="text-3xl text-white/40 font-light italic">{slide.subtitle}</p>
-            </motion.div>
-            
-            <div className="glass-panel p-10 space-y-8 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
-              <p className="text-2xl text-emerald-50/90 font-medium leading-relaxed">{slide.content.tagline}</p>
-              <div className="grid grid-cols-1 gap-5">
-                {slide.content.points.map((p: string, i: number) => (
-                  <motion.div 
-                    key={i} 
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + i * 0.1 }}
-                    className="flex items-start gap-4 text-white/60"
-                  >
-                    <CheckCircle className="w-6 h-6 text-emerald-500 shrink-0 mt-1" />
-                    <span className="text-lg leading-snug">{p}</span>
-                  </motion.div>
-                ))}
+        <div className="w-full h-full flex flex-col md:flex-row items-stretch p-16 gap-16 relative">
+          <div className="flex-1 flex flex-col justify-between z-10">
+            <div className="space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-4"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-px w-12 bg-emerald-500" />
+                  <h2 className="text-emerald-400 font-mono tracking-[0.4em] uppercase text-xs">Sustainable Energy</h2>
+                </div>
+                <h1 className="text-7xl font-black leading-[0.9] tracking-tighter">{slide.title}</h1>
+                <p className="text-2xl text-white/60 font-light italic">{slide.subtitle}</p>
+              </motion.div>
+              
+              <div className="glass-panel p-6 space-y-4 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
+                <p className="text-xl text-emerald-50/90 font-medium leading-relaxed">{slide.content.tagline}</p>
+                <div className="grid grid-cols-1 gap-3">
+                  {slide.content.points.map((p: string, i: number) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + i * 0.1 }}
+                      className="flex items-start gap-3 text-white/70"
+                    >
+                      <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-1" />
+                      <span className="text-lg leading-relaxed">{p}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Personal Details - More Integrated */}
-            <div className="flex flex-wrap gap-4">
-              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-emerald-500/20">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                  <User className="w-5 h-5 text-emerald-400" />
+            {/* Personal Details - Positioned at the bottom in a single line */}
+            <div className="flex flex-row flex-nowrap gap-2 mt-8">
+              <div className="glass-card !py-2 !px-3 flex items-center gap-2 border-emerald-500/20 flex-1 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
+                  <User className="w-4 h-4 text-emerald-400" />
                 </div>
-                <div>
-                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Presenter</p>
-                  <p className="text-base font-bold text-white/90">{slide.content.personal.name}</p>
-                </div>
-              </div>
-              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-blue-500/20">
-                <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Course</p>
-                  <p className="text-base font-bold text-white/90">{slide.content.personal.course}</p>
+                <div className="min-w-0">
+                  <p className="text-[8px] text-white/40 uppercase tracking-[0.1em] truncate">Presenter</p>
+                  <p className="text-xs font-bold text-white/90 truncate">{slide.content.personal.name}</p>
                 </div>
               </div>
-              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-amber-500/20">
-                <div className="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center">
-                  <Hash className="w-5 h-5 text-amber-400" />
+              <div className="glass-card !py-2 !px-3 flex items-center gap-2 border-blue-500/20 flex-1 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
+                  <BookOpen className="w-4 h-4 text-blue-400" />
                 </div>
-                <div>
-                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Roll No</p>
-                  <p className="text-base font-bold text-white/90">{slide.content.personal.roll}</p>
+                <div className="min-w-0">
+                  <p className="text-[8px] text-white/40 uppercase tracking-[0.1em] truncate">Course</p>
+                  <p className="text-xs font-bold text-white/90 truncate">{slide.content.personal.course}</p>
                 </div>
               </div>
-              <div className="glass-card !py-3 !px-5 flex items-center gap-4 border-indigo-500/20">
-                <div className="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center">
-                  <Fingerprint className="w-5 h-5 text-indigo-400" />
+              <div className="glass-card !py-2 !px-3 flex items-center gap-2 border-amber-500/20 flex-1 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0">
+                  <Hash className="w-4 h-4 text-amber-400" />
                 </div>
-                <div>
-                  <p className="text-[9px] text-white/30 uppercase tracking-[0.2em]">Enrollment</p>
-                  <p className="text-base font-bold text-white/90">{slide.content.personal.enroll}</p>
+                <div className="min-w-0">
+                  <p className="text-[8px] text-white/40 uppercase tracking-[0.1em] truncate">Roll No</p>
+                  <p className="text-xs font-bold text-white/90 truncate">{slide.content.personal.roll}</p>
+                </div>
+              </div>
+              <div className="glass-card !py-2 !px-3 flex items-center gap-2 border-indigo-500/20 flex-[1.2] min-w-0">
+                <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center shrink-0">
+                  <Fingerprint className="w-4 h-4 text-indigo-400" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[8px] text-white/40 uppercase tracking-[0.1em] truncate">Enrollment</p>
+                  <p className="text-xs font-bold text-white/90 whitespace-nowrap">{slide.content.personal.enroll}</p>
                 </div>
               </div>
             </div>
@@ -359,26 +358,26 @@ function renderSlideContent(slide: SlideData) {
 
     case 'timeline':
       return (
-        <div className="w-full h-full flex flex-col p-16">
-          <div className="mb-12">
-            <h1 className="text-5xl font-bold mb-2">{slide.title}</h1>
-            <p className="text-xl text-white/40">{slide.subtitle}</p>
+        <div className="w-full h-full flex flex-col p-16 gap-4">
+          <div className="mb-2">
+            <h1 className="text-6xl font-bold mb-1">{slide.title}</h1>
+            <p className="text-2xl text-white/60">{slide.subtitle}</p>
           </div>
-          <div className="flex-1 grid grid-cols-4 gap-8 items-center">
+          <div className="h-[38%] grid grid-cols-4 gap-6 items-stretch">
             {slide.content.map((item: any, i: number) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card h-full flex flex-col justify-between"
+                className="glass-card flex flex-col justify-between !p-5"
               >
-                <div className="space-y-4">
-                  <span className="text-4xl font-bold text-emerald-500/50">{item.year}</span>
+                <div className="space-y-2">
+                  <span className="text-2xl font-bold text-emerald-500/50">{item.year}</span>
                   <h3 className="text-xl font-bold">{item.label}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                  <p className="text-white/70 text-base leading-relaxed">{item.desc}</p>
                 </div>
-                <div className="h-1 w-full bg-emerald-500/20 rounded-full mt-8 overflow-hidden">
+                <div className="h-1 w-full bg-emerald-500/20 rounded-full mt-4 overflow-hidden">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: '100%' }}
@@ -389,8 +388,9 @@ function renderSlideContent(slide: SlideData) {
               </motion.div>
             ))}
           </div>
-          <div className="h-1/3 mt-12 rounded-2xl overflow-hidden border border-white/5">
+          <div className="flex-1 mt-4 rounded-2xl overflow-hidden border border-white/5 relative">
             <img src={slide.image} alt="" className="w-full h-full object-cover opacity-40" referrerPolicy="no-referrer" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
         </div>
       );
@@ -398,27 +398,27 @@ function renderSlideContent(slide: SlideData) {
     case 'grid':
       return (
         <div className="w-full h-full flex p-16 gap-16">
-          <div className="w-1/3 flex flex-col justify-center space-y-8">
-            <h1 className="text-5xl font-bold leading-tight">{slide.title}</h1>
-            <p className="text-xl text-white/40">{slide.subtitle}</p>
+          <div className="w-1/3 flex flex-col justify-center space-y-6">
+            <h1 className="text-6xl font-bold leading-tight">{slide.title}</h1>
+            <p className="text-2xl text-white/60">{slide.subtitle}</p>
             <div className="rounded-2xl overflow-hidden border border-white/5 aspect-square">
               <img src={slide.image} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
           </div>
-          <div className="flex-1 grid grid-cols-2 gap-8 content-center">
+          <div className="flex-1 grid grid-cols-2 gap-6 content-center">
             {slide.content.map((item: any, i: number) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card flex flex-col gap-4 p-12 !min-h-[220px]"
+                className="glass-card flex flex-col gap-3 p-10 !min-h-[180px]"
               >
-                <div className="p-3 bg-emerald-500/10 rounded-xl w-fit text-emerald-400">
+                <div className="p-2.5 bg-emerald-500/10 rounded-xl w-fit text-emerald-400">
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-bold">{item.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                <p className="text-white/70 text-base leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -432,24 +432,24 @@ function renderSlideContent(slide: SlideData) {
             <img src={slide.image} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
           </div>
-          <div className="w-1/2 h-full flex flex-col justify-center p-20 space-y-10">
+          <div className="w-1/2 h-full flex flex-col justify-center p-20 space-y-8">
             <div>
-              <h1 className="text-6xl font-bold mb-4">{slide.title}</h1>
+              <h1 className="text-6xl font-bold mb-3">{slide.title}</h1>
               <p className="text-2xl text-emerald-400/80 italic">{slide.subtitle}</p>
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {slide.content.map((item: string, i: number) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-6 group glass-card !p-4"
+                  className="flex items-center gap-4 group glass-card !p-3"
                 >
-                  <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-black transition-all shrink-0">
-                    <ArrowRight className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 group-hover:bg-emerald-500 group-hover:text-black transition-all shrink-0">
+                    <ArrowRight className="w-3 h-3" />
                   </div>
-                  <span className="text-lg font-medium text-white/80">{item}</span>
+                  <span className="text-xl font-medium text-white/80">{item}</span>
                 </motion.div>
               ))}
             </div>
@@ -459,12 +459,12 @@ function renderSlideContent(slide: SlideData) {
 
     case 'future':
       return (
-        <div className="w-full h-full flex flex-col p-16 gap-12">
-          <div className="text-center space-y-4">
+        <div className="w-full h-full flex flex-col p-16 gap-10">
+          <div className="text-center space-y-3">
             <h1 className="text-6xl font-bold">{slide.title}</h1>
-            <p className="text-xl text-white/40">{slide.subtitle}</p>
+            <p className="text-2xl text-white/60">{slide.subtitle}</p>
           </div>
-          <div className="flex-1 flex gap-8">
+          <div className="flex-1 flex gap-10">
             <div className="flex-1 grid grid-rows-3 gap-6">
               {slide.content.map((item: any, i: number) => (
                 <motion.div
@@ -472,12 +472,12 @@ function renderSlideContent(slide: SlideData) {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="glass-card flex items-center gap-8 px-10"
+                  className="glass-card flex items-center gap-6 px-8"
                 >
-                  <span className="text-5xl font-black text-emerald-500/40">0{i + 1}</span>
+                  <span className="text-4xl font-black text-emerald-500/40">0{i + 1}</span>
                   <div>
                     <h3 className="text-2xl font-bold mb-1">{item.title}</h3>
-                    <p className="text-white/50">{item.desc}</p>
+                    <p className="text-white/70 text-base leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -493,11 +493,11 @@ function renderSlideContent(slide: SlideData) {
       return (
         <div className="w-full h-full relative flex items-center justify-center p-20 overflow-hidden">
           <img src={slide.image} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 scale-110 blur-sm" referrerPolicy="no-referrer" />
-          <div className="relative z-10 max-w-4xl text-center space-y-12">
+          <div className="relative z-10 max-w-4xl text-center space-y-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <h1 className="text-8xl font-bold tracking-tighter">{slide.title}</h1>
               <p className="text-3xl text-emerald-400 font-light tracking-widest uppercase">{slide.subtitle}</p>
@@ -506,7 +506,7 @@ function renderSlideContent(slide: SlideData) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="glass-panel p-12"
+              className="glass-panel p-10"
             >
               <p className="text-2xl leading-relaxed text-white/80 font-light italic">
                 "{slide.content}"
@@ -524,20 +524,20 @@ function renderSlideContent(slide: SlideData) {
             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '30px 30px' }} />
           </div>
           
-          <div className="relative z-10 text-center space-y-16">
+          <div className="relative z-10 text-center space-y-12">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="space-y-6"
+              className="space-y-4"
             >
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Heart className="w-24 h-24 text-emerald-500 mx-auto mb-4 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
+                <Heart className="w-20 h-20 text-emerald-500 mx-auto mb-2 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
               </motion.div>
-              <h1 className="text-[12rem] font-black tracking-tighter leading-none bg-gradient-to-b from-white via-white to-white/10 bg-clip-text text-transparent">
+              <h1 className="text-8xl font-black tracking-tighter leading-none bg-gradient-to-b from-white via-white to-white/10 bg-clip-text text-transparent">
                 {slide.title}
               </h1>
               <p className="text-4xl text-emerald-400 font-light tracking-[0.6em] uppercase">
@@ -545,12 +545,12 @@ function renderSlideContent(slide: SlideData) {
               </p>
             </motion.div>
             
-            <div className="space-y-8">
+            <div className="space-y-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="glass-panel px-16 py-8 inline-block relative"
+                className="glass-panel px-12 py-6 inline-block relative"
               >
                 <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-emerald-500" />
                 <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-emerald-500" />
